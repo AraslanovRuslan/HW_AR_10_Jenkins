@@ -51,6 +51,7 @@ public class Jenkins_HW_10 {
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
 
+
         $(".modal-content").shouldBe(Condition.visible);
         $(".modal-content").shouldHave(text("Ivan Ivanov"));
         $(".modal-content").shouldHave(text("Ivanov@mail.ru"));
