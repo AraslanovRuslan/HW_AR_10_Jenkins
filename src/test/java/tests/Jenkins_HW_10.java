@@ -19,9 +19,10 @@ public class Jenkins_HW_10 extends TestBase{
     @Test
     void formTests(){
         step("Open form", () -> {
-        // executeJavaScript("$('footer').remove()");
-        // executeJavaScript("$('#fixedban').remove()");
-        open("/automation-practice-form");
+            open("/automation-practice-form");
+            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
         });
         step("Fill form", () -> {
         $("#firstName").setValue("Ivan");
