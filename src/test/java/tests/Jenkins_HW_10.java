@@ -12,21 +12,19 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
-public class Jenkins_HW_10 {
+public class Jenkins_HW_10 extends TestBase{
 
-    @BeforeAll
-    static void setUp(){
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.holdBrowserOpen = true;
 
-    }
     @Test
     void formTests(){
+        step("Open form", () -> {
         // executeJavaScript("$('footer').remove()");
         // executeJavaScript("$('#fixedban').remove()");
         open("/automation-practice-form");
+        });
+        step("Fill form", () -> {
         $("#firstName").setValue("Ivan");
         $("#lastName").setValue("Ivanov");
         $("#userEmail").setValue("Ivanov@mail.ru");
@@ -50,8 +48,8 @@ public class Jenkins_HW_10 {
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
-
-
+        });
+        step("Check form", () -> {
         $(".modal-content").shouldBe(Condition.visible);
         $(".modal-content").shouldHave(text("Ivan Ivanov"));
         $(".modal-content").shouldHave(text("Ivanov@mail.ru"));
@@ -64,7 +62,7 @@ public class Jenkins_HW_10 {
         $(".modal-content").shouldHave(text("Some Address"));
         $(".modal-content").shouldHave(text("NCR Delhi"));
         $("#closeLargeModal").click();
-
+            });
     }
 
 
